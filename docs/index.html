@@ -18,7 +18,7 @@ body {
 .hero-banner {
     background-color: #2c5e3b;
     text-align: center;
-    padding: 40px 20px;
+    padding: 35px 20px;
 }
 .hero-banner h1 {
     color: #ffffff;
@@ -43,26 +43,28 @@ body {
     font-size: 15px;
 }
 .content {
-    max-width: 880px;
+    max-width: 940px;
     margin: 30px auto;
     padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
 }
 .card {
     background-color: #ffffff;
     border-radius: 10px;
     padding: 24px;
-    margin-bottom: 24px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.06);
 }
 .card h2 {
     color: #2c5e3b;
     font-size: 22px;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     border-bottom: 1px solid #e0e0e0;
     padding-bottom: 8px;
 }
 .card p {
-    margin-bottom: 16px;
+    margin-bottom: 14px;
     line-height: 1.6;
     font-size: 15px;
 }
@@ -72,7 +74,7 @@ body {
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-    margin-top: 14px;
+    margin-top: 10px;
     font-family: 'Courier New', monospace;
     font-size: 13.5px;
     line-height: 1.5;
@@ -110,38 +112,18 @@ body {
 .cmd {
     color: #ffffff;
 }
-.log-info {
-    color: #4fc1ff;
+.output {
+    color: #9cdcfe;
+    margin-bottom: 10px;
 }
-.log-success {
-    color: #27c93f;
+.json-key {
+    color: #9cdcfe;
 }
-.api-box {
-    background-color: #f9fbf9;
-    border: 1px solid #d0e1d4;
-    border-radius: 6px;
-    padding: 16px;
-    margin-top: 14px;
+.json-val-str {
+    color: #ce9178;
 }
-.api-url {
-    font-family: 'Courier New', monospace;
-    background-color: #1b3823;
-    color: #ffffff;
-    padding: 6px 12px;
-    border-radius: 4px;
-    display: inline-block;
-    margin-bottom: 12px;
-    font-size: 13px;
-}
-.api-payload {
-    background-color: #ffffff;
-    border: 1px solid #e0e0e0;
-    padding: 14px;
-    border-radius: 6px;
-    font-family: 'Courier New', monospace;
-    font-size: 13px;
-    color: #2c5e3b;
-    white-space: pre-wrap;
+.json-val-num {
+    color: #b5cea8;
 }
 footer {
     background-color: #1b3823;
@@ -157,7 +139,7 @@ footer {
 
 <header class="hero-banner">
     <h1>VITALITY NOW</h1>
-    <p>Node.js Server Runtime &amp; HTTP Request Processing</p>
+    <p>Health &amp; Wellness Blog - Server-Side Node.js Application</p>
 </header>
 
 <nav class="nav-bar">
@@ -165,47 +147,57 @@ footer {
     <span>Nutrition</span>
     <span>Fitness</span>
     <span>Mindset</span>
-    <span>Server API</span>
 </nav>
 
 <main class="content">
 
-    <div class="card" id="card-server-init">
-        <h2>Node.js HTTP Server Initialization and Request Logging</h2>
-        <p>Console output displaying the instantiation of the Node.js HTTP server, port listening status, and incoming client requests.</p>
+    <div class="card" id="card-init">
+        <h2>Server Initialization and Listener Configuration</h2>
+        <p>Execution of Node.js server script <code>server.js</code> on port 3000, establishing HTTP endpoints and request logging.</p>
         <div class="terminal-window">
             <div class="terminal-header">
                 <span class="dot dot-red"></span>
                 <span class="dot dot-yellow"></span>
                 <span class="dot dot-green"></span>
-                <span class="terminal-title">bash - node server.js</span>
+                <span class="terminal-title">node server.js (Console Output)</span>
             </div>
             <div class="terminal-body">
-                <div><span class="prompt">noel@node-dev:~$</span> <span class="cmd">node server.js</span></div>
-                <div class="log-success">[Vitality Now Server] HTTP Server successfully initialized on port 3000.</div>
-                <div class="log-info">[Ready] Point your browser or client to http://localhost:3000/</div>
-                <div style="margin-top: 8px;">[Incoming Request] GET / - Status: 200 OK - Content-Type: text/html</div>
-                <div>[Incoming Request] GET /api/articles - Status: 200 OK - Content-Type: application/json</div>
-                <div>[Incoming Request] GET /api/status - Status: 200 OK - Content-Type: application/json</div>
+                <div><span class="prompt">bash$</span> <span class="cmd">node server.js</span></div>
+                <div class="output">Vitality Now server running on http://localhost:3000</div>
+                <div class="output">[2026-10-15T10:14:22.102Z] Server process initialized (PID: 4912)</div>
+                <div class="output">[2026-10-15T10:14:22.105Z] Routes registered: GET /, GET /api/wellness-tips, GET /api/metrics, GET /health</div>
+                <div><span class="prompt">node&gt;</span> <span class="cmd">[2026-10-15T10:14:35.412Z] GET / HTTP/1.1 -> 200 OK (text/html)</span></div>
+                <div><span class="prompt">node&gt;</span> <span class="cmd">[2026-10-15T10:14:38.810Z] GET /api/wellness-tips HTTP/1.1 -> 200 OK (application/json)</span></div>
             </div>
         </div>
     </div>
 
-    <div class="card" id="card-client-response">
-        <h2>Client HTTP Response Delivery</h2>
-        <p>Demonstrating browser and API consumer endpoints delivering structured JSON payloads from the Node.js backend.</p>
-        <div class="api-box">
-            <div class="api-url">GET http://localhost:3000/api/articles</div>
-            <div class="api-payload">{
-  "status": "success",
-  "platform": "Vitality Now Health &amp; Wellness Blog",
-  "timestamp": "2026-10-15T10:00:00.000Z",
-  "articles": [
-    { "id": 1, "title": "Whole-Food Plant Nutrition", "category": "Nutrition", "views": 1280 },
-    { "id": 2, "title": "Cardiorespiratory Zone 2 Endurance", "category": "Fitness", "views": 940 },
-    { "id": 3, "title": "Circadian Rhythm and Cortisol Balance", "category": "Mindset", "views": 1560 }
-  ]
-}</div>
+    <div class="card" id="card-response">
+        <h2>HTTP Request Dispatching and JSON Payload Delivery</h2>
+        <p>Inspecting client HTTP request headers and validating the JSON response delivered by the Node.js wellness tips microservice.</p>
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-yellow"></span>
+                <span class="dot dot-green"></span>
+                <span class="terminal-title">curl -i http://localhost:3000/api/wellness-tips</span>
+            </div>
+            <div class="terminal-body">
+                <div><span class="prompt">client$</span> <span class="cmd">curl -i http://localhost:3000/api/wellness-tips</span></div>
+                <div class="output">HTTP/1.1 200 OK<br>
+                Content-Type: application/json; charset=utf-8<br>
+                Access-Control-Allow-Origin: *<br>
+                Date: Thu, 15 Oct 2026 10:14:38 GMT<br>
+                Connection: keep-alive</div>
+                <div class="output">{<br>
+                &nbsp;&nbsp;<span class="json-key">"success"</span>: <span class="cmd">true</span>,<br>
+                &nbsp;&nbsp;<span class="json-key">"count"</span>: <span class="json-val-num">4</span>,<br>
+                &nbsp;&nbsp;<span class="json-key">"data"</span>: [<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;{ <span class="json-key">"id"</span>: <span class="json-val-num">1</span>, <span class="json-key">"category"</span>: <span class="json-val-str">"Nutrition"</span>, <span class="json-key">"tip"</span>: <span class="json-val-str">"Drink at least 500 ml of water upon waking to kickstart cellular hydration."</span> },<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;{ <span class="json-key">"id"</span>: <span class="json-val-num">2</span>, <span class="json-key">"category"</span>: <span class="json-val-str">"Fitness"</span>, <span class="json-key">"tip"</span>: <span class="json-val-str">"Engage in 30 minutes of Zone 2 cardio to optimize mitochondrial health."</span> }<br>
+                &nbsp;&nbsp;]<br>
+                }</div>
+            </div>
         </div>
     </div>
 

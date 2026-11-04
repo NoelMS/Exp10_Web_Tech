@@ -1,0 +1,11 @@
+{
+  "name": "vitality-now-node-server",
+  "version": "1.0.0",
+  "description": "Server-side HTTP application for Vitality Now health and wellness portal",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "NoelMS",
+  "license": "ISC"
+}
