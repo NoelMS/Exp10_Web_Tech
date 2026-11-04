@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vitality Now | Developing Server-Side Application Using Node.js</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: georgia, garamond, serif;
+}
+body {
+    background-color: #e8f5e9;
+    color: #333333;
+}
+.hero-banner {
+    background-color: #2c5e3b;
+    text-align: center;
+    padding: 40px 20px;
+}
+.hero-banner h1 {
+    color: #ffffff;
+    letter-spacing: 4px;
+    font-size: 32px;
+}
+.hero-banner p {
+    color: #e8f5e9;
+    font-style: italic;
+    margin-top: 8px;
+    font-size: 16px;
+}
+.nav-bar {
+    background-color: #1b3823;
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    padding: 12px 0;
+}
+.nav-bar span {
+    color: #ffffff;
+    font-size: 15px;
+}
+.content {
+    max-width: 880px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+.card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+.card h2 {
+    color: #2c5e3b;
+    font-size: 22px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 8px;
+}
+.card p {
+    margin-bottom: 16px;
+    line-height: 1.6;
+    font-size: 15px;
+}
+.terminal-window {
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    margin-top: 14px;
+    font-family: 'Courier New', monospace;
+    font-size: 13.5px;
+    line-height: 1.5;
+}
+.terminal-header {
+    background-color: #2d2d2d;
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid #3d3d3d;
+}
+.dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    display: inline-block;
+}
+.dot-red { background-color: #ff5f56; }
+.dot-yellow { background-color: #ffbd2e; }
+.dot-green { background-color: #27c93f; }
+.terminal-title {
+    color: #999999;
+    font-size: 12px;
+    margin-left: 10px;
+    font-family: 'Courier New', monospace;
+}
+.terminal-body {
+    padding: 16px;
+}
+.prompt {
+    color: #4ca165;
+    font-weight: bold;
+}
+.cmd {
+    color: #ffffff;
+}
+.log-info {
+    color: #4fc1ff;
+}
+.log-success {
+    color: #27c93f;
+}
+.api-box {
+    background-color: #f9fbf9;
+    border: 1px solid #d0e1d4;
+    border-radius: 6px;
+    padding: 16px;
+    margin-top: 14px;
+}
+.api-url {
+    font-family: 'Courier New', monospace;
+    background-color: #1b3823;
+    color: #ffffff;
+    padding: 6px 12px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 12px;
+    font-size: 13px;
+}
+.api-payload {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    padding: 14px;
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    color: #2c5e3b;
+    white-space: pre-wrap;
+}
+footer {
+    background-color: #1b3823;
+    color: #ffffff;
+    text-align: center;
+    padding: 18px 0;
+    margin-top: 40px;
+    font-size: 14px;
+}
+</style>
+</head>
+<body>
+
+<header class="hero-banner">
+    <h1>VITALITY NOW</h1>
+    <p>Node.js Server Runtime &amp; HTTP Request Processing</p>
+</header>
+
+<nav class="nav-bar">
+    <span>Home</span>
+    <span>Nutrition</span>
+    <span>Fitness</span>
+    <span>Mindset</span>
+    <span>Server API</span>
+</nav>
+
+<main class="content">
+
+    <div class="card" id="card-server-init">
+        <h2>Node.js HTTP Server Initialization and Request Logging</h2>
+        <p>Console output displaying the instantiation of the Node.js HTTP server, port listening status, and incoming client requests.</p>
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-yellow"></span>
+                <span class="dot dot-green"></span>
+                <span class="terminal-title">bash - node server.js</span>
+            </div>
+            <div class="terminal-body">
+                <div><span class="prompt">noel@node-dev:~$</span> <span class="cmd">node server.js</span></div>
+                <div class="log-success">[Vitality Now Server] HTTP Server successfully initialized on port 3000.</div>
+                <div class="log-info">[Ready] Point your browser or client to http://localhost:3000/</div>
+                <div style="margin-top: 8px;">[Incoming Request] GET / - Status: 200 OK - Content-Type: text/html</div>
+                <div>[Incoming Request] GET /api/articles - Status: 200 OK - Content-Type: application/json</div>
+                <div>[Incoming Request] GET /api/status - Status: 200 OK - Content-Type: application/json</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card" id="card-client-response">
+        <h2>Client HTTP Response Delivery</h2>
+        <p>Demonstrating browser and API consumer endpoints delivering structured JSON payloads from the Node.js backend.</p>
+        <div class="api-box">
+            <div class="api-url">GET http://localhost:3000/api/articles</div>
+            <div class="api-payload">{
+  "status": "success",
+  "platform": "Vitality Now Health &amp; Wellness Blog",
+  "timestamp": "2026-10-15T10:00:00.000Z",
+  "articles": [
+    { "id": 1, "title": "Whole-Food Plant Nutrition", "category": "Nutrition", "views": 1280 },
+    { "id": 2, "title": "Cardiorespiratory Zone 2 Endurance", "category": "Fitness", "views": 940 },
+    { "id": 3, "title": "Circadian Rhythm and Cortisol Balance", "category": "Mindset", "views": 1560 }
+  ]
+}</div>
+        </div>
+    </div>
+
+</main>
+
+<footer>
+    <p>Vitality Now Health &amp; Wellness Blog</p>
+</footer>
+
+</body>
+</html>
